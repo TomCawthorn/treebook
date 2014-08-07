@@ -11,15 +11,14 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :content %><br>
-    <%= f.text_area :content %>
+  <div class="form-group">
+    <%= f.label :name, class: "hidden" %><br>
+    <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+
+    <%= f.label :content, class: "hidden" %><br>
+    <%= f.text_area :content, class: "form-control", placeholder: "What's on your mind?" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Post Status", class: "btn btn-primary" %>
   </div>
 <% end %>
