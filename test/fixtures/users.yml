@@ -4,3 +4,10 @@ tom:
   profile_name: "tomcawthorn"
   email: "tom@cawthorn.com"
   encrypted_password: "password"
+
+james: 
+  first_name: "James"
+  last_name: "Toone"
+  profile_name: "jamestoone"
+  email: "james@toone.com"
+  encrypted_password: "password"
