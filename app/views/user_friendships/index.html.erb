@@ -1,0 +1,27 @@
+<div class="page-header">
+	<h1>Frends</h1>
+</div>
+
+
+<% @user_friendships.each do |friendship| %>
+
+<div id="<%= dom_id(friendship) %>">
+	<%= link_to friendship.friend.full_name, profile_path(friendship.friend.profile_name) %>
+
+	<% if friendship.pending? %>
+	<em>Friendship is pending.</em>
+	<%= link_to "delete request", edit_user_friendship_path(friendship) %>
+
+	<% end %>
+
+	<% if friendship.requested? %>
+	<p>Requested</p>
+		<%=link_to "Accept Friendship", edit_user_friendship_path(friendship) %>
+	<% end %>
+
+	<% if friendship.accepted? %>
+	<em>Current Friend.</em>
+		<%= friendship.updated_at %><%= link_to "Update friendship", edit_user_friendship_path(friendship) %>
+	<% end %>
+</div>
+<% end %>

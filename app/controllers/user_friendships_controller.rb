@@ -1,6 +1,12 @@
 class UserFriendshipsController < ApplicationController
 	rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-	before_action :authenticate_user!, only: [:new]
+	before_action :authenticate_user!
+
+
+	def index
+		@user_friendships = current_user.user_friendships.all
+	end
+
 
 	def new
 		if params[:friend_id]
