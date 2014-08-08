@@ -103,8 +103,8 @@ class UserFriendshipsControllerTest < ActionController::TestCase
 					assert_equal users(:john), assigns(:user_friendship).friend
 				end
 
-				should "create a friendship" do
-					assert users(:tom).friends.include?(users(:john))
+				should "create a pending friendship" do
+					assert users(:tom).pending_friends.include?(users(:john))
 				end
 
 				should "redirect to the profile page of the friend" do

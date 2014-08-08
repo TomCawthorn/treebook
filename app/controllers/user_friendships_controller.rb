@@ -31,6 +31,10 @@ class UserFriendshipsController < ApplicationController
 	end
 
 
+
+
+
+
 	private
 
 	def record_not_found
