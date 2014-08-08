@@ -3,7 +3,7 @@ tom:
   last_name: "Cawthorn"
   profile_name: "tomcawthorn"
   email: "tom@cawthorn.com"
-  encrypted_password: "password"
+  encrypted_password: "$2a$10$Fh/Hm8RxDsuPTeBUr6864.GARlcmt7zF2WspaXGr3BIv2C27N.osq"
 
 james: 
   first_name: "James"
