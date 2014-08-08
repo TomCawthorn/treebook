@@ -38,6 +38,16 @@ class StatusesControllerTest < ActionController::TestCase
     assert_redirected_to status_path(assigns(:status))
   end
 
+  test "should create a status for the logged in user" do
+    sign_in users(:tom)
+    assert_difference('Status.count') do
+      post :create, status: { content: @status.content, user_id: users(:james).id }
+    end
+
+    assert_redirected_to status_path(assigns(:status))
+    assert_equal assigns(:status).user_id, users(:tom).id
+  end
+
   test "should be logged in to edit a status" do
     get :edit, id: @status
     assert_response :redirect
@@ -50,7 +60,7 @@ class StatusesControllerTest < ActionController::TestCase
   end
 
   test "should get edit when logged in" do
-    sign_in user(:tom)
+    sign_in users(:tom)
     get :edit, id: @status
     assert_response :success
   end
@@ -61,10 +71,28 @@ class StatusesControllerTest < ActionController::TestCase
     assert_redirected_to new_user_session_path
   end
 
-  test "update a status when logged in" do
+  test "should update a status when logged in" do
     sign_in users(:tom)
     patch :update, id: @status, status: { content: @status.content }
     assert_redirected_to status_path(assigns(:status))
+  end
+
+  test "should update a status for the current user when logged in" do
+    sign_in users(:tom)
+    patch :update, id: @status, status: { content: @status.content, user_id: users(:james).id }
+    assert_redirected_to status_path(assigns(:status))
+
+    assert_equal assigns(:status).user_id, users(:tom).id    
+  end
+
+# Not currently working. Although you can check if params exist, if required, 
+# rails will not allow for an empty hash inside a required param.
+  test "should not update a status when no status is sent in" do
+    sign_in users(:tom)
+    patch :update, id: @status, status: { user_id: users(:tom).id, content: @status.content } 
+    assert_redirected_to status_path(assigns(:status))
+
+    assert_equal assigns(:status).user_id, users(:tom).id    
   end
 
   test "should destroy status" do
