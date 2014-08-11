@@ -5,7 +5,7 @@ class UserFriendshipsController < ApplicationController
 	respond_to :html, :json
 
 	def index
-		@user_friendships = current_user.user_friendships.all
+		@user_friendships = UserFriendshipDecorator.decorate_collection(friendship_association.all)
 		respond_with @user_friendships
 	end
 
@@ -84,6 +84,22 @@ class UserFriendshipsController < ApplicationController
 
 
 	private
+
+	def friendship_association
+		case params[:list]
+		when nil
+			current_user.user_friendships
+		when 'blocked'
+			current_user.blocked_user_friendships
+		when 'pending'	
+			current_user.pending_user_friendships
+		when 'accepted'
+			current_user.accepted_user_friendships
+		when 'requested'
+			current_user.requested_user_friendships
+		end 
+	end
+
 	def record_not_found
 		render file: 'public/404', status: :not_found
 	end

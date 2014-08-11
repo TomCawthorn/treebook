@@ -10,6 +10,7 @@
 
 
     <% @statuses.each do |status| %>
+    <% if can_display_status? status %>
 
       <div class="row">
         <div class="col-xs-8">
@@ -35,6 +36,7 @@
       </div>
 
       <hr>
+      <% end %>
       <% end %>
   </div>
 </div>

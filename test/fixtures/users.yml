@@ -18,3 +18,10 @@ john:
   profile_name: "johnman"
   email: "john@man.com"
   encrypted_password: "password"
+
+blocked_friend:
+  first_name: "Blocked"
+  last_name: "Friend"
+  profile_name: "blockedfriend"
+  email: "blocked@friend.com"
+  encrypted_password: "password"
