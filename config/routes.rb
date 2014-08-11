@@ -17,7 +17,12 @@ Rails.application.routes.draw do
     delete "/logout" => 'devise/sessions#destroy', as: :destroy_user_session
   end
   
-  resources :user_friendships
+  #member means instance - rather than applying to all user friendships
+  resources :user_friendships do
+    member do
+      put :accept
+    end
+  end
 
   resources :statuses
   get 'feed', to: 'statuses#index', as: 'feed'

@@ -1,27 +1,35 @@
-<h2>Sign up</h2>
+<div class="row">
+  <div class="col-md-4 well">
+    <%= simple_form_for resource, 
+      as: resource_name, 
+      url: registration_path(resource_name), 
+      defaults: { input_html: { class: 'form-control' } } do |f| %> 
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <%= f.label :first_name %>
-  <%= f.text_field :first_name %>
 
-  <%= f.label :last_name %>
-  <%= f.text_field :last_name %>
+      <fieldset>
+        <legend>Sign Up</legend>
+
+      
+  <%= f.input :first_name %>
+
+  <%= f.input :last_name %>
   
-  <%= f.label :profile_name %>
-  <%= f.text_field :profile_name %>
+  <%= f.input :profile_name %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+  <%= f.input :email %>
 
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+  <%= f.input :password, input_html: { autocomplete: "Off" } %>
 
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+  <%= f.input :password_confirmation, autocomplete: "off" %>
 
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
+  <div><%= f.submit "Sign up", input_html: { class: "btn btn-success" } %></div>
+    
+   </fieldset> 
 
-<%= render "devise/shared/links" %>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+  </div>
+</div>

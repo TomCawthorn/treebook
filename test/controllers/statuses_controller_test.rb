@@ -54,7 +54,8 @@ class StatusesControllerTest < ActionController::TestCase
     assert_redirected_to new_user_session_path
   end
 
-  test "should show status" do
+  test "should show status when logged in" do
+    sign_in users(:tom)    
     get :show, id: @status
     assert_response :success
   end
@@ -95,7 +96,8 @@ class StatusesControllerTest < ActionController::TestCase
     assert_equal assigns(:status).user_id, users(:tom).id    
   end
 
-  test "should destroy status" do
+  test "should destroy status when logged in" do
+    sign_in users(:tom)
     assert_difference('Status.count', -1) do
       delete :destroy, id: @status
     end
