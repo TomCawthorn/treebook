@@ -20,7 +20,8 @@ Rails.application.routes.draw do
   #member means instance - rather than applying to all user friendships
   resources :user_friendships do
     member do
-      put :accept
+      put :accept, :block
+      #put :block
     end
   end
 

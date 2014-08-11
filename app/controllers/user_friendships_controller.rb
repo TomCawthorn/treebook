@@ -63,6 +63,17 @@ class UserFriendshipsController < ApplicationController
 	end
 
 
+	def block
+		@user_friendship = current_user.user_friendships.find(params[:id])
+		if @user_friendship.block!
+			flash[:success] = "You have blocked #{@user_friendship.friend.first_name}"
+		else
+			flash[:error] = "That person could not be blocked"
+		end
+		redirect_to user_friendships_path
+	end
+
+
 	def destroy
 		if @user_friendship.destroy			
 			flash[:success] = "You are no longer friends"
@@ -71,8 +82,8 @@ class UserFriendshipsController < ApplicationController
 	end
 
 
-	private
 
+	private
 	def record_not_found
 		render file: 'public/404', status: :not_found
 	end
